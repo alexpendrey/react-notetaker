@@ -5,6 +5,7 @@ var UserProfile = require('./Github/UserProfile');
 var Notes = require('./Notes/Notes');
 var ReactFireMixin = require('reactfire');
 var Firebase = require('Firebase');
+var firebaseConfig = require('../config/firebase');
 
 var Profile = React.createClass({
   mixins: [Router.State, ReactFireMixin],
@@ -16,7 +17,7 @@ var Profile = React.createClass({
     }
   },
   componentDidMount: function() {
-    this.ref = new Firebase('https://pandeok-notetaker.firebaseio.com');
+    this.ref = new Firebase(firebaseConfig.firebaseUrl);
     var childRef = this.ref.child(this.getParams().username);
     this.bindAsArray(childRef, 'notes');
   },
