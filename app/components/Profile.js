@@ -19,7 +19,6 @@ var Profile = React.createClass({
     }
   },
   init: function() {
-    console.log('profile init called');
     //bind / rebind to the username
     var childRef = this.ref.child(this.getParams().username);
     this.bindAsArray(childRef, 'notes');
@@ -33,10 +32,10 @@ var Profile = React.createClass({
       }.bind(this));
   },
   componentWillReceiveProps: function(){
+    this.unbind('notes'); //remove binding to the old username
     this.init();
   },
   componentDidMount: function() {
-    console.log('username isx ' + this.getParams().username);
     this.ref = new Firebase(firebaseConfig.firebaseUrl);
     this.init();
   },
@@ -47,7 +46,6 @@ var Profile = React.createClass({
     this.ref.child(this.getParams().username).set(this.state.notes.concat([newNote]));
   },
   render: function(){
-    console.log('profile render');
     var username = this.getParams().username;
     return (
       <div className="row">
