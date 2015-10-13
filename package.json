@@ -13,6 +13,7 @@
   "author": "Alex Pendrey",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.7.0",
     "firebase": "^2.3.1",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
